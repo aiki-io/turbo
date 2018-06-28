@@ -2,4 +2,5 @@
 exclude =
     .git,
     venv,
-    migrations
+    migrations,
+    node_modules
