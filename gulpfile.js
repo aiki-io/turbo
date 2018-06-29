@@ -8,20 +8,23 @@ const cssmin = require('gulp-cssmin');
 const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
 const sourcemaps = require('gulp-sourcemaps');
+const browserSync = require('browser-sync')
 
 gulp.task('html', () => {
     return gulp.src('./spa/*.html')
         .pipe(htmlmin({
             collapseWhitespace: true
         }))
-        .pipe(gulp.dest('./static'));
+        .pipe(gulp.dest('./static'))
+        .pipe(browserSync.stream());
 });
 
 gulp.task('css', () => {
     gulp.src('./spa/scss/*.scss')
         .pipe(sass())
         .pipe(cssmin())
-        .pipe(gulp.dest('./static/css'));
+        .pipe(gulp.dest('./static/css'))
+        .pipe(browserSync.stream());
 });
 
 gulp.task('js', () => {
@@ -32,7 +35,8 @@ gulp.task('js', () => {
         }))
         .pipe(uglify())
         .pipe(sourcemaps.write('../maps'))
-        .pipe(gulp.dest('./static/js'));
+        .pipe(gulp.dest('./static/js'))
+        .pipe(browserSync.stream());
 });
 
 gulp.task('vendor', () => {
@@ -62,3 +66,12 @@ gulp.task('js-vet', () => {
 gulp.task('vet', ['html-vet', 'js-vet']);
 
 gulp.task('build', ['clean', 'html', 'css', 'js', 'vendor']);
+
+gulp.task('serve', ['html', 'css', 'js', 'vendor'], () => {
+    browserSync.init({
+        server: './static'
+    });
+    gulp.watch('./spa/*.html', ['html']);
+    gulp.watch('./spa/scss/*.scss', ['css']);
+    gulp.watch('./spa/js/*.js', ['js']);
+});
