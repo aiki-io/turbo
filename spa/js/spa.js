@@ -1,6 +1,9 @@
 let spa = () => {
     let init = (container) => {
-        console.log(container);
+        container.html(
+            '<h1 style="display: inline-block; margin: 25px;">hello, world</h1>'
+
+        );
     };
 
     return { init };
