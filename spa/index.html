@@ -6,14 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>turbo</title>
     <link rel="icon" href="about:blank"/>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/spa.css">
 </head>
 
 
 <body>
-<h1>Oh, hai</h1>
+<div id="spa"></div>
 <script src='js/jquery.min.js'></script>
-<script src="js/test.js"></script>
+<script src="js/spa.js"></script>
+<script src="js/spa.shell.js"></script>
+<script>
+    $(() => {
+        spa().init($('#spa'));
+    });
+</script>
 </body>
 
 </html>

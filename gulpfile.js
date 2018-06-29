@@ -34,13 +34,13 @@ gulp.task('js', () => {
             presets: ['env']
         }))
         .pipe(uglify())
-        .pipe(sourcemaps.write('../maps'))
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('./static/js'))
         .pipe(browserSync.stream());
 });
 
 gulp.task('vendor', () => {
-   gulp.src('node_modules/jquery/dist/jquery.min.js')
+   gulp.src('./node_modules/jquery/dist/jquery.min.*')
        .pipe(gulp.dest('./static/js'));
 });
 
