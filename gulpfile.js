@@ -8,7 +8,7 @@ const cssmin = require('gulp-cssmin');
 const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
 const sourcemaps = require('gulp-sourcemaps');
-const browserSync = require('browser-sync')
+const browserSync = require('browser-sync');
 
 gulp.task('html', () => {
     return gulp.src('./spa/*.html')
